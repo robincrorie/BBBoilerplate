@@ -1,0 +1,14 @@
+{
+  "PAGES": {
+    "HOME": {
+      "TITLE": "Welcome to Battle Buddy!"
+    },
+    "BLANK": {
+      "TITLE": "Blank Page..."
+    }
+  },
+  "MENU": {
+    "HOME": "Home",
+    "BLANK": "Blank Page"
+  }
+}

@@ -1,0 +1,18 @@
+.sidebar-panel {
+  background-color: #ff453a;
+  .pad-left {
+    padding-left: 1rem !important;
+
+    h5 {
+      margin-bottom: 0.1rem;
+    }
+  }
+}
+
+.sidebar-logo.mat-toolbar {
+  height: 180px;
+}
+
+perfect-scrollbar {
+  height: calc(100% - 180px);
+}

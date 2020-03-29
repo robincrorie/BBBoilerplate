@@ -1,0 +1,97 @@
+<div class="sidebar-panel gene-sidenav" fxLayout="column">
+  <mat-toolbar class="sidebar-logo">
+    <div class="bb-logo">
+      <a href="javascript:void(0)" (click)="onClick()">
+        <div class="logo-text inline-block">
+          <img src="assets/BBLogo.png" width="180" height="180" />
+        </div>
+      </a>
+    </div>
+  </mat-toolbar>
+  <perfect-scrollbar>
+    <div class="sidebar-container">
+      <div class="sidenav-scrollbar-container" fxLayout="column">
+        <ng-container *ngIf="verticalMenuStatus; else horizontalMenuStatus">
+          <mat-nav-list
+            fxLayout="column"
+            menuToggleDirective
+            class="navigation"
+          >
+            <mat-list-item
+              menuToggleLink
+              *ngFor="let menuitem of menuItems.getAll()"
+            >
+              <a
+                menuToggle
+                class="gene-relative"
+                mat-ripple
+                *ngIf="menuitem.type === 'button'"
+                routerLinkActive="active-link"
+                [routerLink]="['/horizontal/dashboard/crm']"
+                [state]="{ ignoreLoadingBar: true }"
+              >
+                <mat-icon>{{ menuitem.icon }}</mat-icon>
+                <span>{{ menuitem.name | translate }}</span>
+                <ng-container *ngIf="menuitem.label">
+                  <span class="sidebar-label">{{ menuitem.label }}</span>
+                </ng-container>
+              </a>
+              <a
+                menuToggle
+                class="gene-relative"
+                mat-ripple
+                [routerLink]="['/', menuitem.state]"
+                [state]="{ ignoreLoadingBar: true }"
+                routerLinkActive="active-link"
+                *ngIf="menuitem.type === 'link'"
+              >
+                <mat-icon>{{ menuitem.icon }}</mat-icon>
+                <span>{{ menuitem.name | translate }}</span>
+                <ng-container *ngIf="menuitem.label">
+                  <span class="sidebar-label">{{ menuitem.label }}</span>
+                </ng-container>
+              </a>
+              <span></span>
+              <a
+                menuToggle
+                class="gene-relative"
+                mat-ripple
+                href="javascript:void(0)"
+                *ngIf="menuitem.type === 'sub'"
+              >
+                <mat-icon>{{ menuitem.icon }}</mat-icon>
+                <span>{{ menuitem.name | translate }}</span>
+                <ng-container *ngIf="menuitem.label">
+                  <span class="sidebar-label">{{ menuitem.label }}</span>
+                </ng-container>
+                <span fxFlex></span>
+                <mat-icon class="menu-caret">chevron_right</mat-icon>
+              </a>
+              <mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
+                <mat-list-item
+                  *ngFor="let childitem of menuitem.children"
+                  routerLinkActive="open"
+                >
+                  <a
+                    [routerLink]="[
+                      '/' + menuitem.state + '/' + childitem.state
+                    ]"
+                    [state]="{ ignoreLoadingBar: true }"
+                    routerLinkActive="active-link"
+                    class="gene-relative"
+                    mat-ripple
+                  >
+                    {{ childitem.name | translate }}
+                    <ng-container *ngIf="childitem.label">
+                      <span class="sidebar-label">{{ childitem.label }}</span>
+                    </ng-container>
+                  </a>
+                </mat-list-item>
+              </mat-nav-list>
+            </mat-list-item>
+          </mat-nav-list>
+        </ng-container>
+      </div>
+    </div>
+  </perfect-scrollbar>
+</div>
